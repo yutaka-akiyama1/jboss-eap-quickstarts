@@ -1,0 +1,113 @@
+[[build_and_run_the_quickstart_with_bootable_jar]]
+= Building and running the quickstart application in a bootable JAR
+
+You can use the WildFly JAR Maven plug-in to build a {productName} bootable JAR to run this quickstart.
+
+The quickstart `pom.xml` file contains a Maven profile named *bootable-jar* which configures the bootable JAR building:
+
+// Render XML Snippet of openshift Maven profile...
+ifndef::ProductRelease[]
+// ... for WildFly
+[source,xml,subs="attributes+"]
+----
+      <profile>
+          <id>bootable-jar</id>
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.wildfly.plugins</groupId>
+                      <artifactId>wildfly-jar-maven-plugin</artifactId>
+                      <configuration>
+                          <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.server}</feature-pack-location>
+                          <layers>
+                              <layer>jaxrs-server</layer>
+                              <layer>microprofile-config</layer>
+                          </layers>
+                          <plugin-options>
+                              <jboss-fork-embedded>true</jboss-fork-embedded>
+                          </plugin-options>
+                      </configuration>
+                      <executions>
+                          <execution>
+                              <goals>
+                                  <goal>package</goal>
+                              </goals>
+                          </execution>
+                      </executions>
+                  </plugin>
+              </plugins>
+          </build>
+      </profile>
+----
+endif::[]
+ifdef::ProductRelease[]
+ifndef::EAPXPRelease[]
+// ... for EAP
+// not supported
+endif::[]
+ifdef::EAPXPRelease[]
+// ... for EAP XP
+[source,xml,subs="attributes+"]
+----
+      <profile>
+          <id>bootable-jar</id>
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.wildfly.plugins</groupId>
+                      <artifactId>wildfly-jar-maven-plugin</artifactId>
+                      <configuration>
+                          ...
+                          <feature-pack-location>org.jboss.eap.xp:wildfly-galleon-pack</feature-pack-location>
+                          <layers>...</layers>
+                          <plugin-options>
+                              <jboss-fork-embedded>true</jboss-fork-embedded>
+                          </plugin-options>
+                      </configuration>
+                      <executions>
+                          <execution>
+                              <goals>
+                                  <goal>package</goal>
+                              </goals>
+                          </execution>
+                      </executions>
+                  </plugin>
+              </plugins>
+          </build>
+      </profile>
+----
+endif::[]
+endif::[]
+
+
+
+.Procedure
+
+. Build the quickstart bootable JAR with the following command:
++
+[source,subs="attributes+",options="nowrap"]
+----
+$ mvn clean package -Pbootable-jar
+----
+
+. Run the quickstart application contained in the bootable JAR:
++
+[source,subs="attributes+",options="nowrap"]
+----
+ifdef::uses-jaeger[]
+$ JAEGER_REPORTER_LOG_SPANS=true JAEGER_SAMPLER_TYPE=const JAEGER_SAMPLER_PARAM=1 java -jar target/{artifactId}-bootable.jar
+endif::uses-jaeger[]
+ifndef::uses-jaeger[]
+$ java -jar target/{artifactId}-bootable.jar
+endif::uses-jaeger[]
+----
+
+. You can now interact with the quickstart application.
+
+[NOTE]
+====
+After the quickstart application is deployed, the bootable JAR includes the application in the root context. Therefore, any URLs related to the application should not have the `/{artifactId}` path segment after `HOST:PORT`.
+====
+
+// Bootable Jar Testing
+include::../shared-doc/run-integration-tests-with-bootable-jar.adoc[leveloffset=+1]

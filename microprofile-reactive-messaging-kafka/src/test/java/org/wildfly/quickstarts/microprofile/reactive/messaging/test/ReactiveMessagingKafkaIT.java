@@ -22,69 +22,38 @@
 
 package org.wildfly.quickstarts.microprofile.reactive.messaging.test;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.eclipse.microprofile.rest.client.RestClientBuilder;
+import org.junit.Assert;
+import org.junit.Test;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.sse.SseEventSource;
-
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.as.arquillian.api.ServerSetup;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-import org.wildfly.quickstarts.microprofile.reactive.messaging.MessagingBean;
+import static org.wildfly.quickstarts.microprofile.reactive.messaging.test.TestUtils.getServerHost;
 
 /**
  * @author <a href="mailto:kabir.khan@jboss.com">Kabir Khan</a>
  */
-@RunWith(Arquillian.class)
-@RunAsClient
-@ServerSetup({RunKafkaSetupTask.class, EnableReactiveExtensionsSetupTask.class})
 public class ReactiveMessagingKafkaIT {
 
-    @ArquillianResource
-    URL url;
 
     private final CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
     private static final long TIMEOUT = 30000;
 
-    @Deployment
-    public static WebArchive getDeployment() {
-        final WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "reactive-messaging-kafka-tx.war")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addPackage(MessagingBean.class.getPackage())
-                .addAsWebInfResource("META-INF/persistence.xml", "classes/META-INF/persistence.xml")
-                .addAsWebInfResource("META-INF/microprofile-config.properties", "classes/META-INF/microprofile-config.properties");
-
-        return webArchive;
-    }
-
     @Test
-    public void test() throws Throwable {
-        HttpGet httpGet = new HttpGet(url.toExternalForm());
+    public void testDbEntries() throws Throwable {
+        HttpGet httpGet = new HttpGet(getServerHost() + "/db");
         long end = System.currentTimeMillis() + TIMEOUT;
         boolean done = false;
         while (!done) {
@@ -97,84 +66,35 @@ public class ReactiveMessagingKafkaIT {
 
     @Test
     public void testUserApi() throws Throwable {
-        Client legacyClient = ClientBuilder.newClient();
-        SseEventSource sourceA = null;
-        SseEventSource sourceB = null;
-        try {
-            final ListSubscriber taskA = new ListSubscriber(new CountDownLatch(3));
-            final ListSubscriber taskB = new ListSubscriber(new CountDownLatch(3));
+        final UserClient client = RestClientBuilder.newBuilder()
+                .baseUrl(new URL(getServerHost()))
+                .build(UserClient.class);
 
-            sourceA = initSseSource(legacyClient,  url.toExternalForm() + "/user", taskA);
-            sourceB = initSseSource(legacyClient, url.toExternalForm() + "/user", taskB);
+        final ListSubscriber taskA = new ListSubscriber(new CountDownLatch(3));
+        client.get().subscribe(taskA);
+        final ListSubscriber taskB = new ListSubscriber(new CountDownLatch(3));
+        client.get().subscribe(taskB);
 
-            sendData("one");
-            sendData("two");
-            sendData("three");
+        client.send("one");
+        client.send("two");
+        client.send("three");
 
-            taskA.latch.await(60, TimeUnit.SECONDS);
-            taskB.latch.await(20, TimeUnit.SECONDS);
+        taskA.latch.await();
+        taskB.latch.await();
 
-            long end = System.currentTimeMillis() + TIMEOUT;
-            while (System.currentTimeMillis() < end) {
-                Thread.sleep(200);
-                if (taskA.lines.size() == 3) {
-                    break;
-                }
+        long end = System.currentTimeMillis() + TIMEOUT;
+        while (System.currentTimeMillis() < end) {
+            Thread.sleep(200);
+            if (taskA.lines.size() == 3) {
+                break;
             }
-
-            checkAsynchTask(taskA, "one", "two", "three");
-            checkAsynchTask(taskB, "one", "two", "three");
-        } finally {
-            close(legacyClient);
-            close(sourceA);
-            close(sourceB);
         }
+
+        checkAsynchTask(taskA, "one", "two", "three");
+        checkAsynchTask(taskB, "one", "two", "three");
     }
 
-    private void close(SseEventSource source) {
-        try {
-            source.close();
-        } catch (Exception ignore) {
-        }
-    }
-
-    private void close(Client legacyClient) {
-        try {
-            legacyClient.close();
-        } catch (Exception ignore) {
-        }
-    }
-
-    private SseEventSource initSseSource(Client client, String url, ListSubscriber subscriber) {
-        WebTarget target = client.target(url);
-        SseEventSource source = SseEventSource.target(target).build();
-        source.register(evt -> {
-                    subscriber.onNext(evt.readData(String.class));
-                },
-                t -> {
-                    t.printStackTrace();
-                    subscriber.onError(t);
-                },
-                () -> {
-                    // bah, never called
-                    subscriber.onComplete();
-                });
-        source.open();
-        return source;
-    }
-
-    private void sendData(String data) throws IOException {
-        HttpPost post = new HttpPost(url.toExternalForm() + "/user/" + data);
-        try (CloseableHttpResponse response = httpClient.execute(post)) {
-            Assert.assertEquals(200, response.getStatusLine().getStatusCode());
-        }
-    }
-
-
-    private void checkAsynchTask(ListSubscriber task, String... values) throws Exception {
-        if (task.error != null) {
-            throw (Exception) task.error;
-        }
+    private void checkAsynchTask(ListSubscriber task, String... values) {
         Assert.assertEquals(3, task.lines.size());
         for (int i = 0; i < values.length; i++) {
             Assert.assertTrue("Line " + i + ": " + task.lines.get(i), task.lines.get(i).contains(values[i]));
@@ -214,7 +134,6 @@ public class ReactiveMessagingKafkaIT {
     private static class ListSubscriber implements Subscriber<String> {
         private final CountDownLatch latch;
         final List<String> lines;
-        Throwable error;
 
         private ListSubscriber(final CountDownLatch latch) {
             this.latch = latch;
@@ -234,17 +153,12 @@ public class ReactiveMessagingKafkaIT {
 
         @Override
         public void onError(final Throwable t) {
-            error = t;
-            while (latch.getCount() > 0) {
-                latch.countDown();
-            }
+
         }
 
         @Override
         public void onComplete() {
-            while (latch.getCount() > 0) {
-                latch.countDown();
-            }
+
         }
     }
 }

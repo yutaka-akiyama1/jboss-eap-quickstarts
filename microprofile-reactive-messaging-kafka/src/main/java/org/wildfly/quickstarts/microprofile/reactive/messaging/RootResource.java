@@ -18,11 +18,11 @@ package org.wildfly.quickstarts.microprofile.reactive.messaging;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/")
 public class RootResource {
@@ -31,8 +31,9 @@ public class RootResource {
     DatabaseBean dbBean;
 
     @GET
+    @Path("/db")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getRootResponse() {
+    public String getDatabaseEntries() {
         List<TimedEntry> entries = dbBean.loadAllTimedEntries();
         StringBuffer sb = new StringBuffer();
         for (TimedEntry t : entries) {
@@ -40,5 +41,11 @@ public class RootResource {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getRootResponse() {
+        return "MicroProfile Reactive Messaging with Kafka quickstart deployed successfully. You can find the available operations in the included README file.";
     }
 }

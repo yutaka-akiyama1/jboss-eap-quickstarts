@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>37</version>
+        <version>43</version>
     </parent>
 
     <groupId>org.jboss.eap.xp.quickstarts</groupId>
@@ -30,11 +30,11 @@
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-    <version>4.0.0.GA</version>
+    <version>5.0.0.GA</version>
 
     <packaging>pom</packaging>
 
-    <name>Quickstart: Aggregator</name>
+    <name>Quickstarts Aggregator</name>
     <description>Quickstart's aggregator</description>
     <url>https://github.com/jboss-developer/jboss-eap-quickstarts</url>
 
@@ -48,14 +48,13 @@
 
     <properties>
         <root.dir>${project.basedir}</root.dir>
-        <jboss.home.name>EAP7_HOME</jboss.home.name>
+        <jboss.home.name>EAP8_HOME</jboss.home.name>
         <product.name>JBoss EAP XP</product.name>
-        <product.version>4.0.0.GA</product.version>
+        <product.version>5.0.0.GA</product.version>
         <!-- A base list of dependency and plug-in version used in the various quick starts. -->
         <version.org.asciidoctor.asciidoctor-maven-plugin>2.1.0</version.org.asciidoctor.asciidoctor-maven-plugin>
-        <version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
         <version.org.wildfly.checkstyle-config>1.0.7.Final</version.org.wildfly.checkstyle-config>
-        <version.org.wildfly.quickstarts.documentation.plugin>2.3.0.Final</version.org.wildfly.quickstarts.documentation.plugin>
+        <version.org.wildfly.quickstarts.documentation.plugin>2.4.1.Final</version.org.wildfly.quickstarts.documentation.plugin>
         <!-- other plug-in versions -->
         <version.com.mycyla.license>3.0</version.com.mycyla.license>
         <version.checkstyle>8.5</version.checkstyle>
@@ -141,7 +140,7 @@
                         <exclude>**/*.sql</exclude>
                         <exclude>**/LICENSE*</exclude>
                         <exclude>**/license*</exclude>
-                        <!-- Javascrip Libraries -->
+                        <!-- Javascript Libraries -->
                         <exclude>**/jquery*</exclude>
                         <exclude>**/angular*</exclude>
                         <exclude>**/qunit*</exclude>
@@ -171,11 +170,6 @@
                     <groupId>org.asciidoctor</groupId>
                     <artifactId>asciidoctor-maven-plugin</artifactId>
                     <version>${version.org.asciidoctor.asciidoctor-maven-plugin}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>${version.wildfly.maven.plugin}</version>
                 </plugin>
                 <!-- Checkstyle -->
                 <plugin>
@@ -289,8 +283,6 @@
 
     <profiles>
         <profile>
-            <!-- All the modules that require nothing but JBoss Enterprise
-                    Application Platform or JBoss EAP -->
             <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -300,19 +292,18 @@
                 </property>
             </activation>
             <modules>
+                <module>micrometer</module>
                 <module>microprofile-config</module>
                 <module>microprofile-fault-tolerance</module>
                 <module>microprofile-health</module>
                 <module>microprofile-jwt</module>
-                <module>microprofile-metrics</module>
+                <module>microprofile-lra</module>
                 <module>microprofile-openapi</module>
-                <module>microprofile-opentracing</module>
                 <module>microprofile-reactive-messaging-kafka</module>
                 <module>microprofile-rest-client</module>
-                <module>todo-backend</module>
+                <module>opentelemetry-tracing</module>
             </modules>
         </profile>
-
         <profile>
             <id>docs</id>
             <activation>
@@ -322,7 +313,6 @@
             </activation>
             <build>
                 <plugins>
-                    <!-- tmp disabling refresh of root readme ToC
                     <plugin>
                         <groupId>org.wildfly.maven.plugins</groupId>
                         <artifactId>quickstart-documentation-plugin</artifactId>
@@ -330,7 +320,9 @@
                         <inherited>false</inherited>
                         <configuration>
                             <rootDirectory>.</rootDirectory>
-                            <targetDocument>README.adoc</targetDocument>
+                            <includeOpenshift/>
+                            <sourceDocument>README-source.adoc</sourceDocument>
+                            <targetDocument>README-source.adoc</targetDocument>
                         </configuration>
                         <executions>
                             <execution>
@@ -342,7 +334,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    -->
                     <plugin>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctor-maven-plugin</artifactId>
@@ -361,7 +352,7 @@
                             </resources>
                             <doctype>article</doctype>
                             <sourceDirectory>.</sourceDirectory>
-                            <sourceDocumentName>README.adoc</sourceDocumentName>
+                            <sourceDocumentName>README-source.adoc</sourceDocumentName>
                             <outputFile>README.html</outputFile>
                             <outputDirectory>.</outputDirectory>
                         </configuration>
@@ -382,7 +373,7 @@
             <id>adoc</id>
             <activation>
                 <file>
-                    <missing>README.adoc</missing>
+                    <missing>README-source.adoc</missing>
                 </file>
             </activation>
             <properties>
@@ -394,6 +385,17 @@
             <activation>
                 <property>
                     <name>release</name>
+                </property>
+            </activation>
+            <modules>
+                <module>dist</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>publish</id>
+            <activation>
+                <property>
+                    <name>publish</name>
                 </property>
             </activation>
             <modules>

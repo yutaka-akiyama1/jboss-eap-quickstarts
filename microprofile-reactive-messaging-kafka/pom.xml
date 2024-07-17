@@ -25,29 +25,27 @@
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-        <version>1.0.0.redhat-00001</version>
+        <version>3.0.0.redhat-00001</version>
         <relativePath/>
     </parent>
     <artifactId>microprofile-reactive-messaging-kafka</artifactId>
-    <version>4.0.0.GA</version>
+    <version>5.0.0.GA</version>
     <packaging>war</packaging>
 
     <name>Quickstart: microprofile-reactive-messaging-kafka</name>
 
     <properties>
-        <!-- BOM versions -->
-        <version.microprofile.bom>4.0.0.GA</version.microprofile.bom>
-        <version.server.bom>7.4.3.GA</version.server.bom>
-        <!-- Test dependencies versions -->
-        <version.io.rest-assured>4.3.1</version.io.rest-assured>
-        <version.org.jboss.jboss-dmr>1.5.1.Final</version.org.jboss.jboss-dmr>
-        <version.org.springframework.kafka>2.8.2</version.org.springframework.kafka>
-
-        <!-- Plugin versions -->
-        <version.server.bootable-jar>4.0.0.GA-redhat-00003</version.server.bootable-jar>
-        <version.wildfly-jar.maven.plugin>6.1.2.Final-redhat-00001</version.wildfly-jar.maven.plugin>
-        <version.jkube.maven.plugin>1.0.1</version.jkube.maven.plugin>
-        <jkube.generator.from>registry.redhat.io/ubi8/openjdk-11:latest</jkube.generator.from>
+        <!-- the version for the Server -->
+        <version.server>5.0.0.GA-redhat-00005</version.server>
+        <!-- The versions for BOMs, Packs and Plugins -->
+        <version.bom.ee>8.0.2.GA-redhat-00008</version.bom.ee>
+        <version.bom.microprofile>5.0.0.GA-redhat-00009</version.bom.microprofile>
+        <version.plugin.eap>1.0.1.Final-redhat-00001</version.plugin.eap>
+        <version.plugin.wildfly>4.1.6.Final-redhat-00003</version.plugin.wildfly>
+        <version.plugin.wildfly-jar>9.0.1.Final-redhat-00010</version.plugin.wildfly-jar>
+        <!-- The versions for other Dependencies and Plugins -->
+        <version.io.smallrye-config>3.0.0</version.io.smallrye-config>
+        <version.org.jboss.resteasy.microprofile.rest-client>2.0.0.Final</version.org.jboss.resteasy.microprofile.rest-client>
     </properties>
 
     <repositories>
@@ -113,15 +111,15 @@
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-eap-xp-microprofile</artifactId>
-                <version>${version.microprofile.bom}</version>
+                <version>${version.bom.microprofile}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
+            <!-- importing the ee-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
             <dependency>
                 <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-eap-jakartaee8-with-tools</artifactId>
-                <version>${version.server.bom}</version>
+                <artifactId>jboss-eap-ee-with-tools</artifactId>
+                <version>${version.bom.ee}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -130,71 +128,71 @@
 
     <dependencies>
 
-        <!-- Import the CDI API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the CDI API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the Reactive Messaging API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Reactive Messaging API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
             <artifactId>microprofile-reactive-messaging-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>org.eclipse.microprofile.reactive-streams-operators</groupId>
             <artifactId>microprofile-reactive-streams-operators-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Reactive Streams API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Reactive Streams API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>org.reactivestreams</groupId>
             <artifactId>reactive-streams</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Kafka Client API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Kafka Client API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the SmallRye Kafka API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the SmallRye Kafka API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>io.smallrye.reactive</groupId>
             <artifactId>smallrye-reactive-messaging-kafka-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Persistence API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Persistence API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Annotations API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Annotations API, we use provided scope as the API is included in WildFly -->
         <dependency>
-            <groupId>org.jboss.spec.javax.annotation</groupId>
-            <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Persistence API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the Persistence API, we use provided scope as the API is included in WildFly -->
         <dependency>
-            <groupId>org.jboss.spec.javax.transaction</groupId>
-            <artifactId>jboss-transaction-api_1.3_spec</artifactId>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the JAX-RS API, we use provided scope as the API is included in WildFly -->
         <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the resteasy-jaxrs API, we use provided scope as the API is included in JBoss EAP XP -->
+        <!-- Import the resteasy-jaxrs API, we use provided scope as the API is included in WildFly -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
+            <artifactId>resteasy-core-spi</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -206,36 +204,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- MicroProfile Reactive Messaging Kafka Connector Test Dependencies -->
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
-            <version>${version.org.springframework.kafka}</version>
-        </dependency>
-
-
         <!-- Other test dependencies -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
-            <version>${version.io.rest-assured}</version>
-        </dependency>
         <dependency>
             <groupId>org.wildfly.arquillian</groupId>
             <artifactId>wildfly-arquillian-common</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss</groupId>
-            <artifactId>jboss-dmr</artifactId>
-            <scope>test</scope>
-            <version>${version.org.jboss.jboss-dmr}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
+            <groupId>org.eclipse.microprofile.rest.client</groupId>
+            <artifactId>microprofile-rest-client-api</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -250,13 +227,47 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
+            <groupId>io.smallrye.config</groupId>
+            <artifactId>smallrye-config-core</artifactId>
+            <version>${version.io.smallrye-config}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy.microprofile</groupId>
+            <artifactId>microprofile-rest-client-base</artifactId>
+            <version>${version.org.jboss.resteasy.microprofile.rest-client}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy.microprofile</groupId>
+            <artifactId>microprofile-rest-client</artifactId>
+            <version>${version.org.jboss.resteasy.microprofile.rest-client}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jboss.eap.plugins</groupId>
+                    <artifactId>eap-maven-plugin</artifactId>
+                    <version>${version.plugin.eap}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.plugin.wildfly}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-jar-maven-plugin</artifactId>
+                    <version>${version.plugin.wildfly-jar}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
@@ -264,8 +275,8 @@
                 <configuration>
                     <!-- adds versions properties as attributes for substitutions in README.adoc source blocks -->
                     <attributes>
-                        <versionServerBom>${version.server.bom}</versionServerBom>
-                        <versionMicroprofileBom>${version.microprofile.bom}</versionMicroprofileBom>
+                        <versionServerBom>${version.bom.ee}</versionServerBom>
+                        <versionMicroprofileBom>${version.bom.microprofile}</versionMicroprofileBom>
                     </attributes>
                 </configuration>
             </plugin>
@@ -274,74 +285,28 @@
 
     <profiles>
         <profile>
-            <!-- An optional Arquillian testing profile that executes tests in your JBoss EAP instance.
-                 This profile will start a new JBoss EAP instance, and execute the test, shutting it down when done.
-                 Run with: mvn clean verify -Parq-managed -->
-            <id>arq-managed</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${version.failsafe.plugin}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- An optional Arquillian testing profile that executes tests in a remote JBoss EAP instance.
-                 Run with: mvn clean verify -Parq-remote -->
-            <id>arq-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${version.failsafe.plugin}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>bootable-jar</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <version>${version.wildfly-jar.maven.plugin}</version>
                         <configuration>
-                            <feature-pack-location>org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}</feature-pack-location>
+                            <channels>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-8.0</artifactId>
+                                    </manifest>
+                                </channel>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-xp-5.0</artifactId>
+                                    </manifest>
+                                </channel>
+                            </channels>
+                            <feature-pack-location>org.jboss.eap.xp:wildfly-galleon-pack</feature-pack-location>
                             <layers>
                                 <layer>cloud-server</layer>
                                 <layer>h2-default-datasource</layer>
@@ -362,25 +327,43 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
-            <id>bootable-jar-openshift</id>
+            <id>openshift</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <version>${version.wildfly-jar.maven.plugin}</version>
+                        <groupId>org.jboss.eap.plugins</groupId>
+                        <artifactId>eap-maven-plugin</artifactId>
                         <configuration>
-                            <feature-pack-location>org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}</feature-pack-location>
+                            <channels>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-8.0</artifactId>
+                                    </manifest>
+                                </channel>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-xp-5.0</artifactId>
+                                    </manifest>
+                                </channel>
+                            </channels>
+                            <feature-packs>
+                                <feature-pack>
+                                    <location>org.jboss.eap.xp:wildfly-galleon-pack</location>
+                                </feature-pack>
+                                <feature-pack>
+                                    <location>org.jboss.eap.cloud:eap-cloud-galleon-pack</location>
+                                </feature-pack>
+                            </feature-packs>
                             <layers>
                                 <layer>cloud-server</layer>
                                 <layer>h2-default-datasource</layer>
                                 <layer>microprofile-reactive-messaging-kafka</layer>
                             </layers>
-                            <plugin-options>
-                                <jboss-fork-embedded>true</jboss-fork-embedded>
-                            </plugin-options>
-                            <cloud/>
+                            <filename>ROOT.war</filename>
                         </configuration>
                         <executions>
                             <execution>
@@ -390,63 +373,31 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.jkube</groupId>
-                        <artifactId>openshift-maven-plugin</artifactId>
-                        <version>${version.jkube.maven.plugin}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>resource</goal>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <enricher>
-                                <config>
-                                    <jkube-service>
-                                        <type>NodePort</type>
-                                    </jkube-service>
-                                </config>
-                            </enricher>
-                            <resources>
-                                <env>
-                                    <!--
-                                        Set environment vars to adjust the JVM metaspace or we might end up
-                                        with OutOfMemoryErrors on OpenShift
-                                    -->
-                                    <GC_MAX_METASPACE_SIZE>256</GC_MAX_METASPACE_SIZE>
-                                    <GC_METASPACE_SIZE>96</GC_METASPACE_SIZE>
-                                    <MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS>my-cluster-kafka-bootstrap:9092</MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS>
-                                </env>
-                            </resources>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
+
         <profile>
-            <!-- Extra parameters needed for RHOSAK with bootable jar -->
-            <id>os-jar-rhosak</id>
+            <id>integration-testing</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <version>${version.wildfly-jar.maven.plugin}</version>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <cli-sessions>
-                                <cli-session>
-                                    <!-- do not resolve expression as they reference env vars that -->
-                                    <!-- can be set at runtime -->
-                                    <resolve-expressions>false</resolve-expressions>
-                                    <script-files>
-                                        <script>src/main/scripts/rhosak/bootable-jar/initialize-server.cli</script>
-                                    </script-files>
-                                </cli-session>
-                            </cli-sessions>
+                            <includes>
+                                <include>**/BasicRuntimeIT</include>
+                                <include>**/ReactiveMessagingKafkaIT</include>
+                            </includes>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

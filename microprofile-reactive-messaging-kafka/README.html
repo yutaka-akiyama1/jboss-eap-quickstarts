@@ -4,26 +4,24 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Kabir Khan">
 <title>microprofile-reactive-messaging-kafka: MicroProfile Reactive Messaging with Kafka QuickStart</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
-/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
-/* Uncomment @import statement to use as custom stylesheet */
-/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
-audio,video{display:inline-block}
-audio:not([controls]){display:none;height:0}
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
 a{background:none}
 a:focus{outline:thin dotted}
 a:active,a:hover{outline:0}
 h1{font-size:2em;margin:.67em 0}
-abbr[title]{border-bottom:1px dotted}
 b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
 dfn{font-style:italic}
-hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+hr{height:0}
 mark{background:#ff0;color:#000}
 code,kbd,pre,samp{font-family:monospace;font-size:1em}
 pre{white-space:pre-wrap}
@@ -35,20 +33,22 @@ sub{bottom:-.25em}
 img{border:0}
 svg:not(:root){overflow:hidden}
 figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
 fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
 legend{border:0;padding:0}
 button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
 button,input{line-height:normal}
 button,select{text-transform:none}
-button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
 button[disabled],html input[disabled]{cursor:default}
-input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type=checkbox],input[type=radio]{padding:0}
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
-*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+*,::before,::after{box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -63,14 +63,12 @@ img{-ms-interpolation-mode:bicubic}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.stretch{width:100%}
 .subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
 a{color:#2156a5;text-decoration:underline;line-height:inherit}
 a:hover,a:focus{color:#1d4b8f}
 a img{border:0}
-p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
 p aside{font-size:.875em;line-height:1.35;font-style:italic}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
 h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
@@ -79,46 +77,44 @@ h2{font-size:1.6875em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
 h4,h5{font-size:1.125em}
 h6{font-size:1em}
-hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
 em,i{font-style:italic;line-height:inherit}
 strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
 code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
-ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
-ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
-abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
-abbr{text-transform:none}
 blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
-blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
-blockquote cite::before{content:"\2014 \0020"}
-blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
 blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
 @media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
 h1{font-size:2.75em}
 h2{font-size:2.3125em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
 h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
 table thead,table tfoot{background:#f7f8f7}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt{background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
 .clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
 .clearfix::after,.float-group::after{clear:both}
-:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-:not(pre)>code.nobreak{word-wrap:normal}
-:not(pre)>code.nowrap{white-space:nowrap}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
 pre>code{display:block}
@@ -126,7 +122,7 @@ pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
 .keyseq{color:rgba(51,51,51,.8)}
-kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
 .menuseq,.menuref{color:#000}
@@ -138,7 +134,7 @@ b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
 b.button::before{content:"[";padding:0 3px 0 2px}
 b.button::after{content:"]";padding:0 2px 0 3px}
 p a>code:hover{color:rgba(0,0,0,.9)}
-#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
 #header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
 #header::after,#content::after,#footnotes::after,#footer::after{clear:both}
 #content{margin-top:1.25em}
@@ -146,7 +142,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
 #header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
-#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
 #header .details br{display:none}
@@ -180,11 +176,11 @@ body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9
 #toc.toc2>ul{font-size:.95em}
 #toc.toc2 ul ul{padding-left:1.25em}
 body.toc2.toc-right{padding-left:0;padding-right:20em}}
-#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
-#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
 #content{margin-bottom:.625em}
 .sect1{padding-bottom:.625em}
 @media screen and (min-width:768px){#content{margin-bottom:1.25em}
@@ -197,29 +193,30 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
 #content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
 details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
-details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
 .admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
 table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
-.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
-table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
 .admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
-.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
-.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
-.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
@@ -227,7 +224,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
 .listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
 .listingblock pre.highlightjs{padding:0}
-.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
 .listingblock pre.prettyprint{border-width:0}
 .prettyprint{background:#f7f7f8}
 pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
@@ -237,9 +234,8 @@ pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
 table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
 table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
 table.linenotable td.code{padding-left:.75em}
-table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
-pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
-pre.pygments .lineno::before{content:"";margin-right:-.125em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
@@ -248,7 +244,7 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
 .quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
 .verseblock{margin:0 1em 1.25em}
-.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
 .verseblock pre strong{font-weight:400}
 .verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
 .quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
@@ -261,23 +257,22 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
 .quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
-.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
-table.tableblock{max-width:100%;border-collapse:separate}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
 p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
 td.tableblock>.content>:last-child{margin-bottom:-1.25em}
-td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
 table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
 table.frame-sides{border-width:0 1px}
-table.frame-topbot,table.frame-ends{border-width:1px 0}
-table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
 th.halign-center,td.halign-center{text-align:center}
@@ -285,7 +280,7 @@ th.valign-top,td.valign-top{vertical-align:top}
 th.valign-bottom,td.valign-bottom{vertical-align:bottom}
 th.valign-middle,td.valign-middle{vertical-align:middle}
 table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th{background:#f7f8f7}
 tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
 p.tableblock>code:only-child{background:none;padding:0}
 p.tableblock{font-size:1em}
@@ -293,14 +288,15 @@ ol{margin-left:1.75em}
 ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
-ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
 ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
 ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
 ul.unstyled,ol.unstyled{margin-left:0}
-ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
-ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
 ul.inline>li{margin-left:1.25em}
 .unstyled dl dt{font-weight:400;font-style:normal}
 ol.arabic{list-style-type:decimal}
@@ -314,11 +310,12 @@ ol.lowergreek{list-style-type:lower-greek}
 .hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
 .colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
 .colist td:not([class]):first-child img{max-width:none}
 .colist td:not([class]):last-child{padding:.25em 0}
-.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
 .imageblock.left{margin:.25em .625em 1.25em 0}
 .imageblock.right{margin:.25em 0 1.25em .625em}
 .imageblock>.title{margin-bottom:0}
@@ -338,8 +335,6 @@ sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
 #footnotes .footnote:last-of-type{margin-bottom:0}
 #content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
-.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
-.gist .file-data>table td.line-data{width:99%}
 div.unbreakable{page-break-inside:avoid}
 .big{font-size:larger}
 .small{font-size:smaller}
@@ -386,7 +381,7 @@ a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
 .admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
 .admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
 .conum[data-value] *{color:#fff!important}
 .conum[data-value]+b{display:none}
 .conum[data-value]::after{content:attr(data-value)}
@@ -394,25 +389,27 @@ pre .conum[data-value]{position:relative;top:-.125em}
 b.conum *{color:inherit!important}
 .conum:not([data-value]):empty{display:none}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
-h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
-.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
 .print-only{display:none!important}
 @page{margin:1.25cm .75cm}
-@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
 html{font-size:80%}
 a{color:inherit!important;text-decoration:underline!important}
 a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
 a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
 abbr[title]::after{content:" (" attr(title) ")"}
 pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
 thead{display:table-header-group}
 svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
 #toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
@@ -429,7 +426,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .print-only{display:block!important}
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
-@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
 .sect1{padding:0!important}
 .sect1+.sect1{border:0}
 #footer{background:none}
@@ -477,10 +474,10 @@ The <code>microprofile-reactive-messaging-kafka</code> quickstart demonstrates t
 <h2 id="system_requirements">System Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The application this project produces is designed to be run on Red Hat JBoss Enterprise Application Platform expansion pack 4.0 or later.</p>
+<p>The application this project produces is designed to be run on Red Hat JBoss Enterprise Application Platform expansion pack 5.0 or later.</p>
 </div>
 <div class="paragraph">
-<p>All you need to build this project is Java 8.0 (Java SDK 1.8) or later and Maven 3.3.1 or later. See <a href="https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN_JBOSS_EAP.adoc#configure_maven_to_build_and_deploy_the_quickstarts">Configure Maven to Build and Deploy the Quickstarts</a> to make sure you are configured correctly for testing the quickstarts.</p>
+<p>All you need to build this project is Java 11.0 (Java SDK 11) or later and Maven 3.6.0 or later. See <a href="https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN_JBOSS_EAP.adoc#configure_maven_to_build_and_deploy_the_quickstarts">Configure Maven to Build and Deploy the Quickstarts</a> to make sure you are configured correctly for testing the quickstarts.</p>
 </div>
 </div>
 </div>
@@ -555,24 +552,24 @@ Kafka must be running before attempting to deploy the Quickstart application. Se
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you <a href="#start_the_eap_standalone_server">start the JBoss EAP XP server</a> as described above.</p>
+<p>Make sure JBoss EAP XP server is started.</p>
 </li>
 <li>
 <p>Open a terminal and navigate to the root directory of this quickstart.</p>
 </li>
 <li>
-<p>Run this command to enable the MicroProfile Reactive Messaging functionality on the server</p>
+<p>Type the following command to build the quickstart.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>$ __EAP_HOME__/bin/jboss-cli.sh --connect --file=enable-reactive-messaging.cli</code></pre>
+<pre class="highlight nowrap"><code>$ mvn clean package</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Type the following command to build the artifacts.</p>
+<p>Type the following command to deploy the quickstart.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>$ mvn clean package wildfly:deploy</code></pre>
+<pre class="highlight nowrap"><code>$ mvn wildfly:deploy</code></pre>
 </div>
 </div>
 </li>
@@ -595,7 +592,7 @@ Kafka must be running before attempting to deploy the Quickstart application. Se
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you <a href="#start_the_eap_standalone_server">start the JBoss EAP XP server</a> as described above.</p>
+<p>Make sure JBoss EAP XP server is started.</p>
 </li>
 <li>
 <p>Open a terminal and navigate to the root directory of this quickstart.</p>
@@ -610,60 +607,32 @@ Kafka must be running before attempting to deploy the Quickstart application. Se
 </li>
 </ol>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="run_the_arquillian_tests">Run the Arquillian Tests</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="run_the_integration_tests_with_server_distribution">Run the Integration Tests</h3>
 <div class="paragraph">
-<p>This quickstart provides Arquillian tests. By default, these tests are configured to be skipped since Arquillian tests require the use of a container.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The Arquillian tests deploy the application, so make sure you undeploy the quickstart before you begin.
-</td>
-</tr>
-</table>
+<p>This quickstart includes integration tests, which are located under the <code>src/test/</code> directory. The integration tests verify that the quickstart runs correctly when deployed on the server.</p>
 </div>
 <div class="paragraph">
-<p>Follow these steps to run the tests.</p>
+<p>Follow these steps to run the integration tests.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="#start_the_eap_standalone_server">Start the JBoss EAP XP server</a> as described above.</p>
+<p>Make sure JBoss EAP XP server is started.</p>
 </li>
 <li>
-<p>Open a terminal and navigate to the root directory of this quickstart.</p>
+<p>Make sure the quickstart is deployed.</p>
 </li>
 <li>
-<p>Type the following command to run the <code>verify</code> goal with the <code>arq-remote</code> profile activated.</p>
+<p>Type the following command to run the <code>verify</code> goal with the <code>integration-testing</code> profile activated.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>$ mvn clean verify -Parq-remote</code></pre>
+<pre class="highlight nowrap"><code>$ mvn verify -Pintegration-testing</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You can also let Arquillian manage the JBoss EAP XP server by using the <code>arq-managed</code> profile, meaning the tests will start the server for you. This profile requires that you provide Arquillian with the location of the JBoss EAP XP server, either by setting the <code>JBOSS_HOME</code> environment variable, or by setting the <code>jbossHome</code> property in the <code>arquillian.xml</code> file. For more information, see <a href="https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/RUN_ARQUILLIAN_TESTS.adoc#run_the_arquillian_tests">Run the Arquillian Tests</a>.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -681,7 +650,7 @@ The Arquillian tests deploy the application, so make sure you undeploy the quick
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code>mvn archetype:generate \
-    -DgroupId=org.wildfly.quickstarts \
+    -DgroupId=org.jboss.eap.xp.quickstarts \
     -DartifactId=microprofile-reactive-messaging-kafka \
     -DinteractiveMode=false \
     -DarchetypeGroupId=org.apache.maven.archetypes \
@@ -709,11 +678,11 @@ cd microprofile-reactive-messaging-kafka</code></pre>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependencyManagement&gt;
   &lt;dependencies&gt;
-    &lt;!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies --&gt;
+    &lt;!-- importing the ee-with-tools BOM adds specs and other useful artifacts as managed dependencies --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.jboss.bom&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-eap-jakartaee8-with-tools&lt;/artifactId&gt;
-        &lt;version&gt;7.4.3.GA&lt;/version&gt;
+        &lt;artifactId&gt;jboss-eap-ee-with-tools&lt;/artifactId&gt;
+        &lt;version&gt;8.0.2.GA-redhat-00008&lt;/version&gt;
         &lt;type&gt;pom&lt;/type&gt;
         &lt;scope&gt;import&lt;/scope&gt;
     &lt;/dependency&gt;
@@ -722,7 +691,7 @@ cd microprofile-reactive-messaging-kafka</code></pre>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jboss.bom&lt;/groupId&gt;
         &lt;artifactId&gt;jboss-eap-xp-microprofile&lt;/artifactId&gt;
-        &lt;version&gt;4.0.0.GA&lt;/version&gt;
+        &lt;version&gt;5.0.0.GA-redhat-00009&lt;/version&gt;
         &lt;type&gt;pom&lt;/type&gt;
         &lt;scope&gt;import&lt;/scope&gt;
     &lt;/dependency&gt;
@@ -741,37 +710,37 @@ cd microprofile-reactive-messaging-kafka</code></pre>
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependencies&gt;
     &lt;!-- Core dependencies --&gt;
 
-    &lt;!-- Import the CDI API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the CDI API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;jakarta.enterprise&lt;/groupId&gt;
         &lt;artifactId&gt;jakarta.enterprise.cdi-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Kafka Client API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Kafka Client API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
         &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the SmallRye Kafka API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the SmallRye Kafka API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;io.smallrye.reactive&lt;/groupId&gt;
         &lt;artifactId&gt;smallrye-reactive-messaging-kafka-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Reactive Messaging API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Reactive Messaging API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.eclipse.microprofile.reactive.messaging&lt;/groupId&gt;
         &lt;artifactId&gt;microprofile-reactive-messaging-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.eclipse.microprofile.reactive-streams-operators&lt;/groupId&gt;
         &lt;artifactId&gt;microprofile-reactive-streams-operators-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Reactive Streams Operators API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.reactivestreams&lt;/groupId&gt;
         &lt;artifactId&gt;reactive-streams&lt;/artifactId&gt;
@@ -780,31 +749,31 @@ cd microprofile-reactive-messaging-kafka</code></pre>
 
     &lt;!-- 'Supporting' dependencies --&gt;
 
-    &lt;!-- Import the Persistence API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Persistence API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;jakarta.persistence&lt;/groupId&gt;
         &lt;artifactId&gt;jakarta.persistence-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Annotations API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Annotations API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.spec.javax.annotation&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-annotations-api_1.3_spec&lt;/artifactId&gt;
+        &lt;groupId&gt;jakarta.annotation&lt;/groupId&gt;
+        &lt;artifactId&gt;jakarta.annotation-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the Persistence API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the Persistence API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.spec.javax.transaction&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-transaction-api_1.3_spec&lt;/artifactId&gt;
+        &lt;groupId&gt;jakarta.transaction&lt;/groupId&gt;
+        &lt;artifactId&gt;jakarta.transaction-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the JAX-RS API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
-        &lt;groupId&gt;org.jboss.spec.javax.ws.rs&lt;/groupId&gt;
-        &lt;artifactId&gt;jboss-jaxrs-api_2.1_spec&lt;/artifactId&gt;
+        &lt;groupId&gt;jakarta.ws.rs&lt;/groupId&gt;
+        &lt;artifactId&gt;jakarta.ws.rs-api&lt;/artifactId&gt;
         &lt;scope&gt;provided&lt;/scope&gt;
     &lt;/dependency&gt;
-    &lt;!-- Import the resteasy-jaxrs API, we use provided scope as the API is included in JBoss EAP XP --&gt;
+    &lt;!-- Import the resteasy-jaxrs API, we use provided scope as the API is included in WildFly --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.jboss.resteasy&lt;/groupId&gt;
         &lt;artifactId&gt;resteasy-jaxrs&lt;/artifactId&gt;
@@ -980,9 +949,9 @@ the generated build section):</p>
 
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class TimedEntry {
@@ -1061,8 +1030,8 @@ public class TimedEntry {
 import java.sql.Timestamp;
 import java.util.concurrent.CompletionStage;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
@@ -1427,11 +1396,11 @@ public class TimedEntryDeserializer implements Deserializer&lt;TimedEntry&gt; {
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class DatabaseBean {
@@ -1490,11 +1459,11 @@ public class DatabaseBean {
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/")
 public class RootResource {
@@ -1503,8 +1472,9 @@ public class RootResource {
     DatabaseBean dbBean;
 
     @GET
+    @Path("/db")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getRootResponse() {
+    public String getDatabaseEntries() {
         List&lt;TimedEntry&gt; entries = dbBean.loadAllTimedEntries();
         StringBuffer sb = new StringBuffer();
         for (TimedEntry t : entries) {
@@ -1523,8 +1493,8 @@ public class RootResource {
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">package org.wildfly.quickstarts.microprofile.reactive.messaging;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 @ApplicationPath("/")
 public class JaxRsApplication extends Application {
@@ -1547,12 +1517,12 @@ The MicroProfile Reactive Messaging 2.0 specification adds a <code>@Channel</cod
 
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import javax.annotation.PreDestroy;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.core.Response;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
@@ -1672,16 +1642,16 @@ public class UserMessagingBean {
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">package org.wildfly.quickstarts.microprofile.reactive.messaging;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.Stream;
 import org.reactivestreams.Publisher;
@@ -1733,8 +1703,21 @@ public class UserResource {
 <h2 id="running-the-apache-kafka-service">Running the Apache Kafka Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To run the Apache Kafka service we will use its Docker container. Note that this also requires Apache Zookeeper, so rather than a simple <code>docker run</code> command this quickstart directory contains a <code>docker-compose.yaml</code> file defining the two Docker containers needed. The
-file can be found <a href="./docker-compose.yaml">here</a>.</p>
+<p>To run Apache Kafka locally you will need to <a href="https://kafka.apache.org/downloads">download</a> it first. Extract the zip to a location, and
+enter that directory in a terminal window. Then enter the following command to start Apache Zookeeper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ ./bin/zookeeper-server-start.sh config/zookeeper.properties</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then open a new terminal window and go to the same directory. In this terminal, to start a Kafka instance, enter the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ ./bin/kafka-server-start.sh config/server.properties</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1743,20 +1726,11 @@ file can be found <a href="./docker-compose.yaml">here</a>.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-If you don&#8217;t have Docker installed on your machine please follow the
-instructions at <a href="https://www.docker.com/get-started" class="bare">https://www.docker.com/get-started</a>.
+Zookeeper and Kafka must be left running, so use a new terminal for other commands outlined in this quickstart.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Run the following command from this folder:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>docker-compose up</code></pre>
-</div>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1764,7 +1738,7 @@ instructions at <a href="https://www.docker.com/get-started" class="bare">https:
 <div class="title">Note</div>
 </td>
 <td class="content">
-This can take a minute.
+Kafka is not supported on Microsoft Windows, but Docker may be used to start a Kafka service on it.
 </td>
 </tr>
 </table>
@@ -1783,7 +1757,8 @@ This can take a minute.
 <p>Make sure <a href="#start_the_eap_standalone_server">the JBoss EAP XP server is started</a> as described above.</p>
 </li>
 <li>
-<p>JBoss EAP XP ships with all the modules to run MicroProfile Reactive Messaging applications with Kafka, but the functionality is not enabled out of the box, so we need to enable it. Run: <code>$ <em>EAP_HOME</em>/bin/jboss-cli.sh --connect --file=enable-reactive-messaging.cli</code> to set everything up. The <code>enable-reactive-messaging.cli</code> file used can be found <a href="enable-reactive-messaging.cli">here</a>.</p>
+<p>JBoss EAP XP ships with all the modules to run MicroProfile Reactive Messaging applications with Kafka, but the functionality is not enabled out of the box, so we need to enable it. Run: <code>$ <em>EAP_HOME</em>/bin/jboss-cli.sh --connect --file=enable-reactive-messaging.cli</code> to set everything up. The <code>enable-reactive-messaging.cli</code> file used can be found <a href="enable-reactive-messaging.cli">here</a>.
+<strong>NOTE</strong>: This is only required if running against the downloaded server. If the <code>microprofile-reactive-messaging-kafka</code> layer is provisioned, as is done by the <code>openshift</code> and <code>bootable-jar</code> maven profiles, the Kafka functionality is there</p>
 </li>
 <li>
 <p>Open new terminal and navigate to the root directory of your project.</p>
@@ -1839,7 +1814,7 @@ This can take a minute.
 <p>In both parts of the log we see that all messages reach the <code>logAllMessages()</code> method, while only <code>Hello</code> and <code>Kafka</code> reach the <code>receiveFromKafka()</code> method which saves them to the RDBMS.</p>
 </div>
 <div class="paragraph">
-<p>To inspect what was stored in the database, go to <a href="http://localhost:8080/microprofile-reactive-messaging-kafka" class="bare">http://localhost:8080/microprofile-reactive-messaging-kafka</a> in  your browser and you should see something like:</p>
+<p>To inspect what was stored in the database, go to <a href="http://localhost:8080/microprofile-reactive-messaging-kafka/db" class="bare">http://localhost:8080/microprofile-reactive-messaging-kafka/db</a> in  your browser and you should see something like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1891,527 +1866,13 @@ data: three</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting_started_with_openshift">Getting Started with JBoss EAP for OpenShift</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following sections contains the basic instructions to build and deploy this quickstart to JBoss EAP for OpenShift.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.4/html/using_eclipse_microprofile_in_jboss_eap/using-the-openshift-image-for-jboss-eap-xp_default"><em>Red Hat JBoss Enterprise Application Platform expansion pack for OpenShift</em></a> for more detailed information about building and running applications on JBoss EAP for OpenShift.</p>
-</div>
-<div class="sect2">
-<h3 id="prepare_openshift_for_quickstart_deployment">Prepare OpenShift for Quickstart Deployment</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log in to your OpenShift instance using the <code>oc login</code> command.</p>
-</li>
-<li>
-<p>Create a new project for the quickstart in OpenShift. You can create a project in OpenShift using the following command.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">$ oc new-project microprofile-reactive-messaging-kafka-project</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Before you can import and use the OpenShift image for JBoss EAP for OpenShift , you must configure authentication to the Red Hat Container Registry.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Create an authentication token using a registry service account to configure access to the Red Hat Container Registry. You need not use or store your Red&nbsp;Hat account&#8217;s username and password in your OpenShift configuration when you use an authentication token.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Follow the instructions on Red&nbsp;Hat Customer Portal to create an authentication token using a registry service account.</p>
-</li>
-<li>
-<p>Download the YAML file containing the OpenShift secret for the token.</p>
-<div class="paragraph">
-<p>You can download the YAML file from the <strong>OpenShift Secret</strong> tab on your token&#8217;s <strong>Token Information</strong> page.</p>
-</div>
-</li>
-<li>
-<p>Create the authentication token secret for your OpenShift project using the YAML file that you downloaded:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc create -f <em>1234567_myserviceaccount-secret.yaml</em></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Configure the secret for your OpenShift project using the following commands, replacing the secret name below with the name of your secret created in the previous step.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc secrets link default <em>1234567-myserviceaccount-pull-secret</em> --for=pull
-oc secrets link builder <em>1234567-myserviceaccount-pull-secret</em> --for=pull</pre>
-</div>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="https://access.redhat.com/RegistryAuthentication#registry-service-accounts-for-shared-environments-4">Create an authentication token using a registry service account</a></p>
-</li>
-<li>
-<p><a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/3.11/html/developer_guide/dev-guide-managing-images#allowing-pods-to-reference-images-from-other-secured-registries">Configuring access to secured registries</a></p>
-</li>
-<li>
-<p><a href="https://access.redhat.com/RegistryAuthentication">Configuring authentication to the Red Hat Container Registry</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="installing-kafka-on-openshift">Installing Kafka on OpenShift</h3>
-<div class="paragraph">
-<p>Kafka on OpenShift is provided by either:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#install_amq_streams">AMQ Streams</a></p>
-</li>
-<li>
-<p><a href="#install_rhosak">RHOSAK</a></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-For the purposes of this Quickstart you should only select one of these, and your choice should match what we will do later in <a href="#deploy-to-openshift">Deploy the JBoss EAP Source-to-Image (S2I) Quickstart to OpenShift</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="install_amq_streams">Install AMQ Streams on Openshift</h4>
-<div class="paragraph">
-<p>The functionality of this quickstart depends on a running instance of the
-<a href="https://access.redhat.com/products/red-hat-amq#streams">AMQ Streams</a> Operator. AMQ Streams is a Red Hat project based on Apache Kafka. To deploy AMQ Streams in the Openshift environment:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log in into the Openshift console as <code>kubeadmin</code> user (or any cluster administrator).</p>
-</li>
-<li>
-<p>Navigate to <code>Operators</code> &#8594; <code>OperatorHub</code>.</p>
-</li>
-<li>
-<p>Search for <code>AMQ Streams</code> - click on the 'Red Hat Integration - AMQ Streams' operator (works with both community and Red Hat).
-Install it with the default values.</p>
-</li>
-<li>
-<p>Run the following command to set up a Kafka cluster called <code>my-cluster</code> in your project:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">$ oc apply -n microprofile-reactive-messaging-kafka-project -f - &lt;&lt;EOF
-apiVersion: kafka.strimzi.io/v1beta2
-kind: Kafka
-metadata:
-  name: my-cluster
-spec:
-  kafka:
-    replicas: 3
-    listeners:
-      - name: plain
-        port: 9092
-        type: internal
-        tls: false
-    storage:
-      type: ephemeral
-  zookeeper:
-    replicas: 3
-    storage:
-      type: ephemeral
-  entityOperator:
-    topicOperator: {}
-EOF</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-If you see errors along the lines of <em>no matches for kind "Kafka" in version "kafka.strimzi.io/v1beta2"</em>, execute the command <code>oc get crd kafkas.kafka.strimzi.io -o jsonpath="{.spec.versions[*].name}"</code> and update <code>apiVersion</code> to the returned version.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Next set up a topic called <code>testing</code> in the <code>my-cluster</code> cluster we created:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc apply -n microprofile-reactive-messaging-kafka-project -f - &lt;&lt;EOF
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaTopic
-metadata:
-  name: testing
-labels:
-  strimzi.io/cluster: my-cluster
-spec:
-  partitions: 3
-  replicas: 3
-EOF</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="install_rhosak">Install RHOSAK on Openshift</h4>
-<div class="paragraph">
-<p>The functionality of this quickstart depends on a running instance of the
-<a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-streams-for-apache-kafka">Red Hat OpenShift Streams for Apache Kafka (RHOSAK)</a> Operator. RHOSAK is a Red Hat managed cloud service based on Apache Kafka. It runs on OpenShift but outside your OpenShift environment.</p>
-</div>
-<div class="sect4">
-<h5 id="_setting_up_rhosak">Setting up RHOSAK</h5>
-<div class="paragraph">
-<p>We will summarize the steps required to set up a Kafka instance in RHOSAK here. They were correct at the time of writing and inspired by the following <a href="https://developers.redhat.com/developer-sandbox/activities/connecting-to-your-managed-kafka-instance">article</a> explaining how to set up an instance in the Developer Sandbox for Red Hat OpenShift, which allows you to try technologies on OpenShift for free. If these steps change, the RHOSAK documentation will have the up to date instructions. Finally, the steps below assume you are using the Developer Sandbox. If you are a paying customer of RHOSAK you should adjust the steps accordingly.</p>
-</div>
-<div class="paragraph">
-<p><strong>Prerequisites:</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>On your OpenShift cluster make sure that the <code>RHOAS</code> and <code>Service Binding Operator</code> operators are installed.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>You can check this by going to Operators/Installed Operators in the Administrator perspective of the console</p>
-</li>
-<li>
-<p>If not installed, install (or ask an admin if you don&#8217;t have permissions) these operators via Operators/OperatorHub in the Administrator perspective of the console</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Create a <a href="https://developers.redhat.com/products/rhosak/getting-started">RHOSAK account</a> before doing the following steps:</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From the <a href="https://developers.redhat.com/products/rhosak/getting-started">RHOSAK</a> console, create a Kafka instance. You need to specify a name for it Kafka instance, for example <code>my-quickstart-kafka</code>. In the rest of this text we will use <code>&lt;kafka-name&gt;</code> to represent <code>my-quickstart-kafka</code>. Apart from the name you can use default values for everything else. It will take a few minutes for your Kafka instance to be ready.</p>
-</li>
-<li>
-<p>Go into the instance and create a topic called <code>testing</code>. Use the suggested defaults for everything else.</p>
-</li>
-<li>
-<p><a href="https://github.com/redhat-developer/app-services-cli">Download</a> the <code>rhoas</code> application for your OS. Make it available on your path.</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_connecting_the_application_to_kafka">Connecting the application to Kafka</h5>
-<div class="paragraph">
-<p>First we need to log in to RHOAS. The login process uses the browser session for the console.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>rhoas login</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then we need to make <code>rhoas</code> use our Kafka instance</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># Substitute &lt;kafka-name&gt; with the name of your Kafka instance
-rhoas kafka use --name &lt;kafka-name&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then go to <a href="https://console.redhat.com/openshift/token" class="bare">https://console.redhat.com/openshift/token</a> and get the token to authenticate with your OpenShift cluster.</p>
-</div>
-<div class="paragraph">
-<p>Execute</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>rhoas cluster connect --service-type kafka --yes --token {your token pasted here}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output of the above will show that the connection to Kafka has been created. Make a note of the <code>Client ID</code> which appears in the output of the <code>rhoas cluster connect</code> command. We will need this <code>Client ID</code> later:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>✔️  Service Account Secret "rh-cloud-services-service-account" created successfully
-
-Client ID:     srvc-acct-4321abcd-123a-98cb-1234-01234abcd123
-
-Make a copy of the client ID to store in a safe place. Credentials won't appear again after closing the terminal.</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>At the time of writing, if you did not make a note of the <code>Client ID</code>, it is possible to recover it by running <code>rhoas service-account list</code>, and looking for the <code>Client ID</code> associated with your account.</p>
-</div>
-<div class="paragraph">
-<p>The <code>rhoas cluster connect</code> output will also tell you to run <code>rhoas cluster bind</code>. However, we need to wait until we have deployed our application with <code>helm install</code> in the next step. Once we run <code>rhoas cluster bind --binding-name kafka-config</code> after  deploying our application, the Service Binding Operator will create a config map bound to the <code>/bindings/kafka-config</code> directory in the application pods. We will use this service binding in the next section, although we need to wait before we actually perform this binding.</p>
-</div>
-<div class="paragraph">
-<p>Next, we need to grant access to our service account. This is done by running the following command</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>rhoas kafka acl grant-access --consumer --producer     --service-account &lt;client id&gt; --topic "*" --group "*"</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Substitute &lt;client id&gt; with the <code>Client ID</code> reported by the earlier <code>rhoas cluster connect</code> command.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_configuring_your_application">Configuring your application</h5>
-<div class="paragraph">
-<p>The final part of the setup is to map the created service binding config map to our application. As mentioned, once we run <code>rhoas cluster bind</code>, we will get a Config Map with entries mapped to files under the /bindings/kafka-config` directory in the application pods.</p>
-</div>
-<div class="paragraph">
-<p>When building the application the <a href="/src/main/scripts/rhosak/s2i/initialize-server.cli" class="bare">/src/main/scripts/rhosak/s2i/initialize-server.cli</a> CLI script gets run, and performs the following steps.</p>
-</div>
-<div class="paragraph">
-<p>First it adds the config map stored in the <code>/bindings/kafka-config</code> directory as a config source in the MicroProfile Config subsystem.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>echo "Adding the kafka-config service binding..."
-/subsystem=microprofile-config-smallrye/config-source=rhosak-binding:add(dir={path=/bindings/kafka-config})/subsystem=microprofile-config-smallrye/config-source=rhosak-binding:add(dir={path=/bindings/kafka-config})</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This config map contains properties such as <code>bootstrapServers</code>, <code>securityProtocol</code>, <code>saslMechanism</code>, <code>user</code> and <code>password</code>. These contain all the information we need to connect to the managed Kafka instance. However, we need to map these onto what our application understands, and this is done in the second part of the CLI script:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>echo "Adding the MicroProfile Config entries mapping the service binding..."
-/subsystem=microprofile-config-smallrye/config-source=reactive-messaging-properties:add(properties={\
-mp.messaging.connector.smallrye-kafka.bootstrap.servers=${bootstrapServers},\
-mp.messaging.connector.smallrye-kafka.security.protocol=${securityProtocol},\
-mp.messaging.connector.smallrye-kafka.sasl.mechanism=${saslMechanism},\
-mp.messaging.connector.smallrye-kafka.sasl.jaas.config="\n\
-org.apache.kafka.common.security.plain.PlainLoginModule required\n\
-username=\"${user}\"\n\
-password=\"${password}\";"\
-}, ordinal=500)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This has the effect of, for example, the value <code>mp.messaging.connector.smallrye-kafka.bootstrap.servers</code> will use the <code>${bootstrapServers}</code> value provided by the service binding config map.</p>
-</div>
-<div class="paragraph">
-<p>These properties from the MicroProfile Config subsystem have the same names as some of the ones we already defined in <a href="src/main/resources/META-INF/microprofile-config.properties">microprofile-config.properties</a>. These get merged into one overall configuration. Where the same value exists in both places the one added in the CLI script above takes precedence, so <code>mp.messaging.connector.smallrye-kafka.bootstrap.servers</code> from the values provided by CLI script will be used. This is because the CLI script uses a higher <code>ordinal</code> when adding these properties.
-Once deployed this will store the ConfigMap settings in the application pod&#8217;s <code>/etc/config/reactive-messaging-properties</code> directory.</p>
-</div>
-<div class="paragraph">
-<p>The CLI script will get run as part of initialising the application pod, when we pass in the environment variable <code>QS_USE_RHOSAK=true</code> when building the application as we will see later. For the bootable jar with RHOSAK combination there is a <code>src/main/scripts/rhoasak/bootable-jar/initialise-server.cli</code> script that does the same.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploy-to-openshift">Deploy the JBoss EAP Source-to-Image (S2I) Quickstart to OpenShift</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The sub-sections describe how to deploy the application to OpenShift interacting with Kafka provided by either:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#xp-deploy-project-amq-streams">AMQ Streams</a></p>
-</li>
-<li>
-<p><a href="#xp-deploy-project-rhosak">RHOSAK</a></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-For the purposes of this Quickstart, you should choose one of these approaches, not both. Your choice should match the type of Kafka instance you selected earlier in <a href="#installing-kafka-on-openshift">Installing Kafka on OpenShift</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>In both cases we will use Helm to install the application. Make sure you have downloaded the <a href="https://docs.openshift.com/container-platform/4.9/applications/working_with_helm_charts/installing-helm.html">Helm CLI Tool</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="xp-deploy-project-amq-streams">Deploy the JBoss EAP Source-to-Image (S2I) Quickstart to OpenShift with AMQ Streams</h3>
-<div class="paragraph">
-<p>This section describes how to deploy the application to OpenShift interacting with Kafka provided by AMQ Streams. If you want to use RHOSAK instead, see the <a href="#xp-deploy-project-rhosak">RHOSAK instructions</a>.</p>
-</div>
-<div class="paragraph">
-<p>First add the Helm repository, if you have not done so already, as described in <a href="https://jbossas.github.io/eap-charts/" class="bare">https://jbossas.github.io/eap-charts/</a>.</p>
-</div>
-<div class="paragraph">
-<p>Then run the following command to deploy and start the application (note we are using the name <code>mp-rm-qs</code> for our application here):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code>helm install mp-rm-qs -f ./helm-amq-streams.yml jboss-eap/eap-xp4 --set build.uri=https://github.com/jboss-developer/jboss-eap-quickstarts.git --set build.ref=XP_4.0.0.GA</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Although the above command will return quite quickly, it will take a while until the application pod is actually brought up. In the OpenShift console you will see a pod whose name starts with mp-rm-qs in the <code>ErrImagePull</code> or <code>ImagePullBackoff</code> state until the build has completed.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The contents of the <a href="helm-amq-streams.yml"><code>helm-amq-streams.yml</code></a> file specify:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The Galleon layers to use when creating the server under <code>build/s2i/galleonLayers</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>microprofile-reactive-messaging-kafka</code> contains the MicroProfile Reactive Messaging with Kafka functionality</p>
-</li>
-<li>
-<p><code>h2-default-datasource</code> enables the HSQL database we store data in</p>
-</li>
-<li>
-<p><code>cloud-server</code> provides among other things the web server functionality</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>For both the build (under <code>build/env</code>) and the deploy <code>deploy/env</code>) parts, we specify environment variables to increase some JVM arguments from the default.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Run <code>oc get route</code> to find the URL of our application.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="xp-deploy-project-rhosak">Deploy the JBoss EAP Source-to-Image (S2I) Quickstart to OpenShift with RHOSAK</h3>
-<div class="paragraph">
-<p>This section describes how to deploy the application to OpenShift interacting with Kafka provided by RHOSAK. If you want to use AMQ Streams instead, see the <a href="#xp-deploy-project-amq-streams">AMQ Streams instructions</a>.</p>
-</div>
-<div class="paragraph">
-<p>To deploy your application make sure you have downloaded the <a href="https://docs.openshift.com/container-platform/4.9/applications/working_with_helm_charts/installing-helm.html">Helm CLI Tool</a>. <code>./helm-rhosak.yml</code> contains the information to deploy the application to be backed by Kafka provided by RHOSAK.</p>
-</div>
-<div class="paragraph">
-<p>First add the Helm repository, if you have not done so already, as described in <a href="https://jbossas.github.io/eap-charts/" class="bare">https://jbossas.github.io/eap-charts/</a>.</p>
-</div>
-<div class="paragraph">
-<p>Then run the following command to deploy and start the application (note we are using the name <code>mp-rm-qs</code> for our application here, as mentioned when we connected RHOSAK to our OpenShift project):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code>helm install mp-rm-qs -f ./helm-rhosak.yml jboss-eap/eap-xp4  --set build.uri=https://github.com/jboss-developer/jboss-eap-quickstarts.git --set build.ref=XP_4.0.0.GA</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Although the above command will return quite quickly, it will take a while until the application pod is actually brought up. In the OpenShift console you will see a pod whose name starts with mp-rm-qs in the <code>ErrImagePull</code> or <code>ImagePullBackoff</code> state until the build has completed.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>While the OpenShift cluster is doing the work to build and deploy the application (i.e. as soon as the <code>helm install</code> has completed in your terminal), run the following command to set up the service binding for the Kafka connection as mentioned earlier:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code>rhoas cluster bind --app-name mp-rm-qs --service-type kafka --binding-name kafka-config --yes</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You may also wait performing the above command until the application pod has been brought up. In this case it will log errors that it is not able to connect to Kafka. Once the above command is run, the 'faulty' pod will be taken down and replaced by one containing the correct configuration.</p>
-</div>
-<div class="paragraph">
-<p>The contents of the <a href="helm-rhosak.yml"><code>helm-rhosak.yml</code></a> file:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Specify the Galleon layers to use when creating the server under <code>build/s2i/galleonLayers</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>microprofile-reactive-messaging-kafka</code> contains the MicroProfile Reactive Messaging with Kafka functionality</p>
-</li>
-<li>
-<p><code>h2-default-datasource</code> enables the HSQL database we store data in</p>
-</li>
-<li>
-<p><code>cloud-server</code> provides among other things the web server functionality.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>For both the build (under <code>build/env</code>) and the deploy <code>deploy/env</code>) parts, we specify environment variables to increase some JVM arguments from the default.</p>
-</li>
-<li>
-<p>Additionally, under <code>build/env</code> we set <code>QS_USE_RHOSAK</code> to <code>1</code> which makes the script in <a href="src/main/scripts/rhosak/s2i/install.sh"><code>src/main/scripts/rhosak/s2i/install.sh</code></a> copy the contents of the directory, which in turn runs the <a href=""><code>src/main/scripts/rhosak/s2i/initialize-server.cli</code></a> CLI script to enable the service binding and points relevant MicroProfile Config properties to the service binding via the <code>microprofile-config-smallrye</code> subsystem.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Run <code>oc get route</code> find the URL of our application.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="build_and_run_the_quickstart_with_bootable_jar">Building and running the quickstart application in a bootable JAR</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can package a JBoss EAP XP server and an application inside a bootable JAR. You can then run the application on a JBoss EAP XP bare-metal platform or on a JBoss EAP XP Openshift platform.</p>
+<p>You can use the WildFly JAR Maven plug-in to build a JBoss EAP XP bootable JAR to run this quickstart.</p>
 </div>
-<div class="sect2">
-<h3 id="_on_a_jboss_eap_xp_bare_metal_platform">On a JBoss EAP XP bare-metal platform</h3>
 <div class="paragraph">
-<p>You can use the Maven plug-in to build a JBoss EAP XP bootable JAR, and then you can run the application on a JBoss EAP XP bare-metal platform. The following example demonstrates a quickstart <code>pom.xml</code> file that contains a Maven profile named <strong>bootable-jar</strong>:</p>
+<p>The quickstart <code>pom.xml</code> file contains a Maven profile named <strong>bootable-jar</strong> which configures the bootable JAR building:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2423,12 +1884,9 @@ Although the above command will return quite quickly, it will take a while until
                       &lt;groupId&gt;org.wildfly.plugins&lt;/groupId&gt;
                       &lt;artifactId&gt;wildfly-jar-maven-plugin&lt;/artifactId&gt;
                       &lt;configuration&gt;
-                          &lt;feature-pack-location&gt;org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}&lt;/feature-pack-location&gt;
-                          &lt;layers&gt;
-                              &lt;layer&gt;cloud-server&lt;/layer&gt;
-                              &lt;layer&gt;h2-default-datasource&lt;/layer&gt;
-                              &lt;layer&gt;microprofile-reactive-messaging-kafka&lt;/layer&gt;
-                          &lt;/layers&gt;
+                          ...
+                          &lt;feature-pack-location&gt;org.jboss.eap.xp:wildfly-galleon-pack&lt;/feature-pack-location&gt;
+                          &lt;layers&gt;...&lt;/layers&gt;
                           &lt;plugin-options&gt;
                               &lt;jboss-fork-embedded&gt;true&lt;/jboss-fork-embedded&gt;
                           &lt;/plugin-options&gt;
@@ -2484,173 +1942,49 @@ Although the above command will return quite quickly, it will take a while until
 </tr>
 </table>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_on_a_jboss_eap_xp_openshift_platform">On a JBoss EAP XP OpenShift platform</h3>
+<h3 id="run_the_integration_tests_with_bootable_jar_">Run the Integration Tests with a bootable jar</h3>
 <div class="paragraph">
-<p>You can use the Maven plug-in to build a JBoss EAP XP bootable JAR, and then you can run the application on a JBoss EAP XP OpenShift platform. The following example demonstrates a quickstart <code>pom.xml</code> file that contains a Maven profile named <strong>bootable-jar-openshift</strong>:</p>
+<p>The integration tests included with this quickstart, which verify that the quickstart runs correctly, may also be run with a bootable jar.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">      &lt;profile&gt;
-          &lt;id&gt;bootable-jar-openshift&lt;/id&gt;
-          &lt;build&gt;
-              &lt;plugins&gt;
-                  &lt;plugin&gt;
-                      &lt;groupId&gt;org.wildfly.plugins&lt;/groupId&gt;
-                      &lt;artifactId&gt;wildfly-jar-maven-plugin&lt;/artifactId&gt;
-                      &lt;configuration&gt;
-                          &lt;feature-pack-location&gt;org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}&lt;/feature-pack-location&gt;
-                          &lt;layers&gt;
-                              &lt;layer&gt;cloud-server&lt;/layer&gt;
-                              &lt;layer&gt;h2-default-datasource&lt;/layer&gt;
-                              &lt;layer&gt;microprofile-reactive-messaging-kafka&lt;/layer&gt;
-                          &lt;/layers&gt;
-                          &lt;plugin-options&gt;
-                              &lt;jboss-fork-embedded&gt;true&lt;/jboss-fork-embedded&gt;
-                          &lt;/plugin-options&gt;
-                          &lt;cloud/&gt;
-                      &lt;/configuration&gt;
-                      &lt;executions&gt;
-                          &lt;execution&gt;
-                              &lt;goals&gt;
-                                  &lt;goal&gt;package&lt;/goal&gt;
-                              &lt;/goals&gt;
-                          &lt;/execution&gt;
-                      &lt;/executions&gt;
-                  &lt;/plugin&gt;
-                  &lt;plugin&gt;
-                      &lt;groupId&gt;org.eclipse.jkube&lt;/groupId&gt;
-                      &lt;artifactId&gt;openshift-maven-plugin&lt;/artifactId&gt;
-                      &lt;executions&gt;
-                          &lt;execution&gt;
-                              &lt;goals&gt;
-                                  &lt;goal&gt;resource&lt;/goal&gt;
-                                  &lt;goal&gt;build&lt;/goal&gt;
-                              &lt;/goals&gt;
-                          &lt;/execution&gt;
-                      &lt;/executions&gt;
-                      &lt;configuration&gt;
-                          &lt;enricher&gt;
-                              &lt;config&gt;
-                                  &lt;jkube-service&gt;
-                                      &lt;type&gt;NodePort&lt;/type&gt;
-                                  &lt;/jkube-service&gt;
-                              &lt;/config&gt;
-                          &lt;/enricher&gt;
-                          &lt;resources&gt;
-                              &lt;env&gt;
-                                  &lt;!--
-                                    Set environment vars to adjust the JVM metaspace or we might end up
-                                    with OutOfMemoryErrors on OpenShift
-                                  --&gt;
-                                  &lt;GC_MAX_METASPACE_SIZE&gt;256&lt;/GC_MAX_METASPACE_SIZE&gt;
-                                  &lt;GC_METASPACE_SIZE&gt;96&lt;/GC_METASPACE_SIZE&gt;
-                                  &lt;!-- Set the AMQ Streams URL to what is set up by the instructions --&gt;
-                                  &lt;MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS&gt;my-cluster-kafka-bootstrap:9092&lt;/MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS&gt;
-                              &lt;/env&gt;
-                          &lt;/resources&gt;
-                      &lt;/configuration&gt;
-                  &lt;/plugin&gt;
-              &lt;/plugins&gt;
-          &lt;/build&gt;
-      &lt;/profile&gt;
-      &lt;profile&gt;
-          &lt;id&gt;os-jar-amq-streams&lt;/id&gt;
-          &lt;build&gt;
-              &lt;plugins&gt;
-                  &lt;plugin&gt;
-                      &lt;groupId&gt;org.eclipse.jkube&lt;/groupId&gt;
-                      &lt;artifactId&gt;openshift-maven-plugin&lt;/artifactId&gt;
-                      &lt;version&gt;${version.jkube.maven.plugin}&lt;/version&gt;
-                      &lt;configuration&gt;
-                          &lt;resources&gt;
-                              &lt;env&gt;
-                                &lt;!-- Set the AMQ Streams URL to what is set up by the instructions --&gt;
-                                  &lt;MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS&gt;my-cluster-kafka-bootstrap:9092&lt;/MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS&gt;
-                              &lt;/env&gt;
-                          &lt;/resources&gt;
-                      &lt;/configuration&gt;
-                  &lt;/plugin&gt;
-              &lt;/plugins&gt;
-          &lt;/build&gt;
-      &lt;/profile&gt;
-      &lt;profile&gt;
-          &lt;!-- Extra parameters needed for RHOSAK with bootable jar --&gt;
-          &lt;id&gt;os-jar-rhosak&lt;/id&gt;
-          &lt;build&gt;
-              &lt;plugins&gt;
-                  &lt;plugin&gt;
-                      &lt;groupId&gt;org.wildfly.plugins&lt;/groupId&gt;
-                      &lt;artifactId&gt;wildfly-jar-maven-plugin&lt;/artifactId&gt;
-                      &lt;version&gt;${version.wildfly-jar.maven.plugin}&lt;/version&gt;
-                      &lt;configuration&gt;
-                          &lt;cli-sessions&gt;
-                              &lt;cli-session&gt;
-                                  &lt;!-- do not resolve expression as they reference env vars that --&gt;
-                                  &lt;!-- can be set at runtime --&gt;
-                                  &lt;resolve-expressions&gt;false&lt;/resolve-expressions&gt;
-                                  &lt;script-files&gt;
-                                      &lt;script&gt;src/main/scripts/bootable-jar/initialize-server.cli&lt;/script&gt;
-                                  &lt;/script-files&gt;
-                              &lt;/cli-session&gt;
-                          &lt;/cli-sessions&gt;
-                      &lt;/configuration&gt;
-                  &lt;/plugin&gt;
-              &lt;/plugins&gt;
-          &lt;/build&gt;
-      &lt;/profile&gt;</code></pre>
-</div>
+<div class="paragraph">
+<p>Follow these steps to run the integration tests.</p>
 </div>
 <div class="olist arabic">
-<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Log in to your OpenShift instance using the <code>oc login</code> command.</p>
-</li>
-<li>
-<p>Create a new project for the quickstart bootable JAR on OpenShift. For example:</p>
+<p>Make sure the bootable jar is provisioned.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">$ oc new-project bootable-jar-project</pre>
+<pre class="highlight nowrap"><code>$ mvn clean package -Pbootable-jar</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Depending on which kind of Kafka you would like:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha">
-<li>
-<p>Install <strong>AMQ Streams</strong> into the <code>bootable-jar-project</code> OpenShift project as outlined <a href="#install_amq_streams">earlier</a>  in this quickstart.</p>
+<p>Start the JBoss EAP XP bootable jar, this time using the JBoss EAP XP Maven Jar Plugin, which is recommend for testing due to simpler automation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ mvn wildfly-jar:start -Djar-file-name=target/microprofile-reactive-messaging-kafka-bootable.jar</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Set up a Kafka instance on <strong>RHOSAK</strong>, and connect it to the <code>mp-rm-qs</code> application as outlined <a href="#install_rhosak">earlier</a>  in this quickstart. The <code>os-jar-rhosak</code> profile in the pom.xml triggers running the <code>src/main/scripts/bootable-jar/initialize-server.cli</code> when preparing the bootable jar, so that the config map and service binding become part of the configuration provided by the <code>microprofile-config-smallrye</code> subsystem.</p>
+<p>Type the following command to run the <code>verify</code> goal with the <code>integration-testing</code> profile activated, and specifying the quickstart&#8217;s URL using the <code>server.host</code> system property, which for a bootable jar by default is <code><a href="http://localhost:8080" class="bare">http://localhost:8080</a></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ mvn verify -Pintegration-testing -Dserver.host=http://localhost:8080</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Shutdown the JBoss EAP XP bootable jar, this time using the JBoss EAP XP Maven Jar Plugin too.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ mvn wildfly-jar:shutdown</code></pre>
+</div>
+</div>
 </li>
 </ol>
-</div>
-</li>
-<li>
-<p>Build the quickstart bootable JAR by issuing the following command. This command also completes the following tasks: creates the OpenShift deployment, service and route; generates a docker image and pushes the docker image to OpenShift; and runs the application.</p>
-<div class="paragraph">
-<p>The command to deploy the application is slightly different depending on which Kafka installation you want to target.</p>
-</div>
-<div class="paragraph">
-<p>First add the Helm repository, if you have not done so already, as described in <a href="https://jbossas.github.io/eap-charts/" class="bare">https://jbossas.github.io/eap-charts/</a>.</p>
-</div>
-<div class="paragraph">
-<p>Then, either:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha">
-<li>
-<p>If you are targeting Kafka supplied by <strong>AMQ Streams</strong>, use the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code>$ helm install mp-rm-qs -f ./helm-bootable-jar-amq-streams.yml jboss-eap/eap-xp4 --set build.uri=https://github.com/jboss-developer/jboss-eap-quickstarts.git --set build.ref=XP_4.0.0.GA</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The contents of <a href="./helm-bootable-jar-amq-streams.yml"><code>helm-bootable-jar-amq-streams.yml</code></a> are mostly similar to what was discussed for <a href="./helm-amq-streams.yml"><code>helm-amq-streams.yml</code></a> earlier. The main difference is that <code>build.mode</code> is set to <code>bootable-jar</code>, and we specify <code>-Pbootable-jar-openshift</code> in the <code>MAVEN_ARGS_APPEND</code> environment variable to trigger the <code>bootable-jar-openshift</code> Maven profile when building the bootable jar.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2659,24 +1993,78 @@ Although the above command will return quite quickly, it will take a while until
 <div class="title">Note</div>
 </td>
 <td class="content">
-Although the above command will return quite quickly, it will take a while until the application pod is actually brought up. In the OpenShift console you will see a pod whose name starts with {hemlAppName} in the <code>ErrImagePull</code> or <code>ImagePullBackoff</code> state until the build has completed.
+<div class="paragraph">
+<p>The following warning message may be seen when starting the JBoss EAP XP bootable jar, due to the topic missing in Kafka:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>WARN  [org.apache.kafka.clients.NetworkClient] (smallrye-kafka-consumer-thread-0) [Consumer clientId=kafka-consumer-from-kafka, groupId="microprofile-reactive-messaging-kafka-group-id"] Error while fetching metadata with correlation id 2 : {testing=LEADER_NOT_AVAILABLE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may ignore this warning, yet to avoid it the topic may be manually created in advance, with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>bin/kafka-topics.sh --create --topic testing --bootstrap-server localhost:9092</code></pre>
+</div>
+</div>
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>If you are targeting Kafka supplied by <strong>RHOSAK</strong>, use the following commands.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="build_and_run_the_quickstart_on_openshift">Building and running the quickstart application with OpenShift</h2>
+<div class="sectionbody">
+<div class="sect3">
+<h4 id="build-the-quickstart-for-openshift">Build the JBoss EAP XP Source-to-Image (S2I) Quickstart to OpenShift with Helm Charts</h4>
 <div class="paragraph">
-<p>Then install our application:</p>
+<p>On OpenShift, the S2I build with Apache Maven uses an <code>openshift</code> Maven profile to provision a JBoss EAP XP server, deploy and run the quickstart in OpenShift environment.</p>
+</div>
+<div class="paragraph">
+<p>The server provisioning functionality is provided by the EAP Maven Plugin, and you may find its configuration in the quickstart <code>pom.xml</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>$ helm install mp-rm-qs -f ./helm-bootable-jar-rhosak.yml jboss-eap/eap-xp4 --set build.uri=https://github.com/jboss-developer/jboss-eap-quickstarts.git --set build.ref=XP_4.0.0.GA</code></pre>
+<pre class="highlight"><code class="language-xml" data-lang="xml">        &lt;profile&gt;
+            &lt;id&gt;openshift&lt;/id&gt;
+            &lt;build&gt;
+                &lt;plugins&gt;
+                    &lt;plugin&gt;
+                        &lt;groupId&gt;org.jboss.eap.plugins&lt;/groupId&gt;
+                        &lt;artifactId&gt;eap-maven-plugin&lt;/artifactId&gt;
+                        &lt;configuration&gt;
+                            ...
+                            &lt;feature-packs&gt;
+                                &lt;feature-pack&gt;
+                                    &lt;location&gt;org.jboss.eap.xp:wildfly-galleon-pack&lt;/location&gt;
+                                &lt;/feature-pack&gt;
+                                &lt;feature-pack&gt;
+                                    &lt;location&gt;org.jboss.eap.cloud:eap-cloud-galleon-pack&lt;/location&gt;
+                                &lt;/feature-pack&gt;
+                            &lt;/feature-packs&gt;
+                            &lt;layers&gt;...&lt;/layers&gt;
+                            &lt;name&gt;ROOT.war&lt;/name&gt;
+                        &lt;/configuration&gt;
+                        &lt;executions&gt;
+                            &lt;execution&gt;
+                                &lt;goals&gt;
+                                    &lt;goal&gt;package&lt;/goal&gt;
+                                &lt;/goals&gt;
+                            &lt;/execution&gt;
+                        &lt;/executions&gt;
+                    &lt;/plugin&gt;
+                    ...
+                &lt;/plugins&gt;
+            &lt;/build&gt;
+        &lt;/profile&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The contents of <a href="./helm-bootable-jar-rhosak.yml"><code>helm-bootable-jar-rhosak.yml</code></a> are mostly similar to what was discussed for <a href="./helm-rhosak.yml"><code>helm-rhoask.yml</code></a> earlier. The main difference is that <code>build.mode</code> is set to <code>bootable-jar</code>, and we specify <code>-Pbootable-jar-openshift,os-jar-rhosak</code> in the <code>MAVEN_ARGS_APPEND</code> environment variable to trigger the <code>bootable-jar-openshift</code> and <code>os-jar-rhosak</code> Maven profiles when building the bootable jar. For this combination we don&#8217;t need the <code>QS_USE_RHOSAK</code> environment variable as the <code>os-jar-rhosak</code> contains the CLI script needed to configure the config map and service binding.</p>
+<p>You may note that the cloud feature pack is used, this enables a configuration tuned for OpenShift environment.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2685,58 +2073,264 @@ Although the above command will return quite quickly, it will take a while until
 <div class="title">Note</div>
 </td>
 <td class="content">
-Although the above command will return quite quickly, it will take a while until the application pod is actually brought up. In the OpenShift console you will see a pod whose name starts with {hemlAppName} in the <code>ErrImagePull</code> or <code>ImagePullBackoff</code> state until the build has completed.
+<div class="paragraph">
+<p>Previous JBoss EAP XP releases used the WildFly JAR Maven Plugin to package the quickstart in a Bootable JAR, when deploying it on OpenShift, and while that&#8217;s still supported it&#8217;s no longer recommended.</p>
+</div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Once the CLI returns, remember to bind the RHOSAK Kafka connection so the service binding is available and the <code>/bindings/kafka-config</code> directory gets created on the application pod:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight nowrap"><code>rhoas cluster bind --app-name mp-rm-qs  --binding-name kafka-config --yes</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Get the URL of the route.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">$ oc get route</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Access the application in your web browser by using a URL. The URL is the value of the <code>HOST/PORT</code> field that was provided by the <code>oc get route</code> command output. For example, the route of the URL for the quickstart used in this procedure is <code>https://<em>HOST_PORT_Value</em>/</code>.</p>
-</li>
-</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_customizing_openshift_resources_with_resource_fragments">Customizing OpenShift resources with resource fragments</h3>
+<h3 id="getting_started_with_helm">Getting Started with JBoss EAP for OpenShift and Helm Charts</h3>
 <div class="paragraph">
-<p>With the Eclipse JKube Maven plug-in, you can customize the generated OpenShift resources, such as deployments, routes, and so on,  with YAML file extracts located in the <em>src/main/jkube</em> directory.</p>
+<p>This section contains the basic instructions to build and deploy this quickstart to JBoss EAP for OpenShift or JBoss EAP for OpenShift Online using Helm Charts.</p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites_helm_openshift">Prerequisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You must be logged in OpenShift and have an <code>oc</code> client to connect to OpenShift</p>
+</li>
+<li>
+<p><a href="https://helm.sh">Helm</a> must be installed to deploy the backend on OpenShift.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The <code>route.yml</code> file, which is located in the <em>src/main/jkube</em> directory, is an example of a resource fragment. You can configure this resource fragment to change the Openshift application service route to use HTTPS:</p>
+<p>Once you have installed Helm, you need to add the repository that provides Helm Charts for JBoss EAP XP.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">spec:
-  tls:
-    insecureEdgeTerminationPolicy: Redirect
-    termination: edge
-  to:
-    kind: Service
-    name: microprofile-reactive-messaging-kafka</pre>
+<pre class="highlight nowrap"><code>$ helm repo add jboss-eap https://jbossas.github.io/eap-charts/
+"jboss-eap" has been added to your repositories
+$ helm search repo jboss-eap
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+jboss-eap/eap-xp5         ...             ...             A Helm chart to build and deploy EAP 5.0 applications</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ helm repo add jboss-eap https://jbossas.github.io/eap-charts/
+"jboss-eap" has been added to your repositories
+$ helm search repo jboss-eap
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+jboss-eap/eap-xp5         ...             ...             A Helm chart to build and deploy EAP XP 5.0 applications</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deploy_helm_prerequisites">Install AMQ Streams on OpenShift</h5>
+<div class="paragraph">
+<p>The functionality of this quickstart depends on a running instance of the
+<a href="https://access.redhat.com/products/red-hat-amq#streams">AMQ Streams</a> Operator. AMQ Streams is a Red Hat project based on Apache Kafka. To deploy AMQ Streams in the Openshift environment:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in into the Openshift console as <code>kubeadmin</code> user (or any cluster administrator).</p>
+</li>
+<li>
+<p>Install the <code>Red Hat Streams for Apache Kafka</code> operator</p>
+</li>
+<li>
+<p>Create an instance of <code>Red Hat Streams for Apache Kafka</code></p>
+</li>
+<li>
+<p>Create a topic in the <code>Red Hat Streams for Apache Kafka</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Install it with the default values and wait for the message telling you it has been installed and is ready for use.</p>
+</div>
+<div class="paragraph">
+<p>In your terminal, run the following command to subscribe the <code>Red Hat Streams for Apache Kafka</code> operator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ oc apply -f ./charts/amq-operator-on-openshift.yaml --wait --timeout=10m0s</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more information about resource fragments, see the <a href="https://www.eclipse.org/jkube/docs/openshift-maven-plugi">Eclipse JKube documentation</a>.</p>
+<p>To verify the operator is ready to use, you can run the following command. You should see the following output.
+The <code>PHASE</code> needs to be <code>Succeeded</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ oc get ClusterServiceVersion
+
+NAME                  DISPLAY                            VERSION   REPLACES              PHASE
+amqstreams.v2.7.0-1   Red Hat Streams for Apache Kafka   2.7.0-1   amqstreams.v2.7.0-0   Succeeded</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you can set up a Kafka cluster called <code>my-cluster</code> with topic <code>testing</code> in your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ oc apply -f ./charts/kafka-on-openshift.yaml --wait --timeout=10m0s</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Although the above commands will return pretty immediately, your AMQ Streams instance will not be available until its entity operator is up and running. The name of the pod will be of the format <code>my-cluster-entity-operator-xxxxxxxxx-yyyyy</code>.</p>
+</div>
+<div class="paragraph">
+<p>To be on the safe side, wait until this pod is ready, as shown in this example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap"> oc get pods -w
+
+NAME                     READY   STATUS    RESTARTS   AGE
+my-cluster-zookeeper-0   0/1     Running   0          29s
+...
+my-cluster-entity-operator-cbdbffd4d-m7fzh   0/2     Pending             0          0s
+my-cluster-entity-operator-cbdbffd4d-m7fzh   0/2     ContainerCreating   0          0s
+my-cluster-entity-operator-cbdbffd4d-m7fzh   0/2     ContainerCreating   0          0s
+my-cluster-entity-operator-cbdbffd4d-m7fzh   0/2     Running             0          1s
+my-cluster-entity-operator-cbdbffd4d-m7fzh   1/2     Running             0          20s
+my-cluster-entity-operator-cbdbffd4d-m7fzh   2/2     Running             0          21s</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deploy_helm">Deploy the JBoss EAP Source-to-Image (S2I) Quickstart to OpenShift with Helm Charts</h4>
+<div class="paragraph">
+<p>Log in to your OpenShift instance using the <code>oc login</code> command.
+The backend will be built and deployed on OpenShift with a Helm Chart for JBoss EAP XP.</p>
+</div>
+<div class="paragraph">
+<p>Navigate to the root directory of this quickstart and run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ helm install mp-rm-qs -f charts/helm.yaml jboss-eap/eap-xp5 --wait --timeout=10m0s
+NAME: mp-rm-qs
+...
+STATUS: deployed
+REVISION: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command will return once the application has successfully deployed. In case of a timeout, you can check the status of the application with the following command in another terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>oc get deployment mp-rm-qs</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Helm Chart for this quickstart contains all the information to build an image from the source code using S2I on Java 17:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># TODO Update to point to the released quickstarts and image
+# Will need a diff commit in the upstream-to-product repository
+build:
+  uri: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+  ref: xp-5.0.x
+  contextDir: microprofile-reactive-messaging-kafka
+deploy:
+  replicas: 1
+  env:
+    - name: MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS
+      value: my-cluster-kafka-bootstrap:9092</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a new deployment on OpenShift and deploy the application.</p>
+</div>
+<div class="paragraph">
+<p>If you want to see all the configuration elements to customize your deployment you can use the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ helm show readme jboss-eap/eap-xp5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get the URL of the route to the deployment.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ oc get route mp-rm-qs -o jsonpath="{.spec.host}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Access the application in your web browser using the displayed URL.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Maven profile named <code>openshift</code> is used by the Helm chart to provision the server with the quickstart deployed on the root web context, and thus the application should be accessed with the URL without the <code>/microprofile-reactive-messaging-kafka</code> path segment after <code>HOST:PORT</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="run_the_integration_tests_with_openshift">Run the Integration Tests with OpenShift</h3>
+<div class="paragraph">
+<p>The integration tests included with this quickstart, which verify that the quickstart runs correctly, may also be run with the quickstart running on OpenShift.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The integration tests expect a deployed application, so make sure you have deployed the quickstart on OpenShift before you begin.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Run the integration tests using the following command to run the <code>verify</code> goal with the <code>integration-testing</code> profile activated and the proper URL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ mvn verify -Pintegration-testing -Dserver.host=https://$(oc get route mp-rm-qs --template='{{ .spec.host }}') </code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The tests are using SSL to connect to the quickstart running on OpenShift. So you need the certificates to be trusted by the machine the tests are run from.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="undeploy_helm">Undeploy the JBoss EAP Source-to-Image (S2I) Quickstart from OpenShift with Helm Charts</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code>$ helm uninstall mp-rm-qs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc delete -f ./charts/kafka-on-openshift.yaml --wait --timeout=10m0s
+$ oc delete -f ./charts/amq-operator-on-openshift.yaml --wait --timeout=10m0s</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2752,7 +2346,7 @@ Although the above command will return quite quickly, it will take a while until
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-04-04 13:05:11 UTC
+Last updated 2024-07-05 13:53:48 UTC
 </div>
 </div>
 </body>

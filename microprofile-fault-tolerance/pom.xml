@@ -17,7 +17,7 @@
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.eap.xp.quickstarts</groupId>
@@ -26,11 +26,11 @@
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-        <version>1.0.0.redhat-00001</version>
+        <version>3.0.0.redhat-00001</version>
         <relativePath/>
     </parent>
     <artifactId>microprofile-fault-tolerance</artifactId>
-    <version>4.0.0.GA</version>
+    <version>5.0.0.GA</version>
     <packaging>war</packaging>
     <name>Quickstart: microprofile-fault-tolerance</name>
     <description>
@@ -52,13 +52,16 @@
     </licenses>
 
     <properties>
-        <!-- The versions for BOMs, Dependencies and Plugins -->
-        <version.microprofile.bom>4.0.0.GA</version.microprofile.bom>
-        <version.server.bom>7.4.3.GA</version.server.bom>
-        <version.server.bootable-jar>4.0.0.GA-redhat-00003</version.server.bootable-jar>
-        <version.wildfly-jar.maven.plugin>6.1.2.Final-redhat-00001</version.wildfly-jar.maven.plugin>
-        <version.jkube.maven.plugin>1.0.1</version.jkube.maven.plugin>
-        <jkube.generator.from>registry.redhat.io/ubi8/openjdk-11:latest</jkube.generator.from>
+        <!-- the version for the Server -->
+        <version.server>5.0.0.GA-redhat-00005</version.server>
+        <!-- The versions for the BOMs, Packs and Plugins -->
+        <version.bom.ee>8.0.2.GA-redhat-00008</version.bom.ee>
+        <version.bom.microprofile>5.0.0.GA-redhat-00009</version.bom.microprofile>
+        <version.plugin.eap>1.0.1.Final-redhat-00001</version.plugin.eap>
+        <version.plugin.wildfly>4.1.6.Final-redhat-00003</version.plugin.wildfly>
+        <version.plugin.wildfly-jar>9.0.1.Final-redhat-00010</version.plugin.wildfly-jar>
+        <!-- The versions for other dependencies and plugin -->
+        <version.io.rest-assured>4.3.1</version.io.rest-assured>
     </properties>
 
     <repositories>
@@ -120,19 +123,19 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-eap-jakartaee8-with-tools</artifactId>
-                <version>${version.server.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!-- importing the microprofile BOM adds MicroProfile specs -->
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-eap-xp-microprofile</artifactId>
-                <version>${version.microprofile.bom}</version>
+                <version>${version.bom.microprofile}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- importing the ee-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-eap-ee-with-tools</artifactId>
+                <version>${version.bom.ee}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -151,8 +154,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -191,34 +194,48 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>4.3.1</version>
+            <version>${version.io.rest-assured}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>microprofile-fault-tolerance</finalName>
+        <finalName>${project.artifactId}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.jboss.eap.plugins</groupId>
+                    <artifactId>eap-maven-plugin</artifactId>
+                    <version>${version.plugin.eap}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.plugin.wildfly}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-jar-maven-plugin</artifactId>
+                    <version>${version.plugin.wildfly-jar}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <configuration>
+                        <!-- adds versions properties as attributes for substitutions in README.adoc source blocks -->
+                        <attributes>
+                            <versionServerBom>${version.bom.ee}</versionServerBom>
+                            <versionMicroprofileBom>${version.bom.microprofile}</versionMicroprofileBom>
+                        </attributes>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <configuration>
-                    <!-- adds versions properties as attributes for substitutions in README.adoc source blocks -->
-                    <attributes>
-                        <versionServerBom>${version.server.bom}</versionServerBom>
-                        <versionMicroprofileBom>${version.microprofile.bom}</versionMicroprofileBom>
-                    </attributes>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>
@@ -229,12 +246,25 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <version>${version.wildfly-jar.maven.plugin}</version>
                         <configuration>
-                            <feature-pack-location>org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}</feature-pack-location>
+                            <channels>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-8.0</artifactId>
+                                    </manifest>
+                                </channel>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-xp-5.0</artifactId>
+                                    </manifest>
+                                </channel>
+                            </channels>
+                            <feature-pack-location>org.jboss.eap.xp:wildfly-galleon-pack</feature-pack-location>
                             <layers>
                                 <layer>jaxrs-server</layer>
-                                <layer>microprofile-platform</layer>
+                                <layer>microprofile-fault-tolerance</layer>
                             </layers>
                             <plugin-options>
                                 <jboss-fork-embedded>true</jboss-fork-embedded>
@@ -252,23 +282,40 @@
             </build>
         </profile>
         <profile>
-            <id>bootable-jar-openshift</id>
+            <id>openshift</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <version>${version.wildfly-jar.maven.plugin}</version>
+                        <groupId>org.jboss.eap.plugins</groupId>
+                        <artifactId>eap-maven-plugin</artifactId>
                         <configuration>
-                            <feature-pack-location>org.jboss.eap:wildfly-galleon-pack:${version.server.bootable-jar}</feature-pack-location>
+                            <channels>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-8.0</artifactId>
+                                    </manifest>
+                                </channel>
+                                <channel>
+                                    <manifest>
+                                        <groupId>org.jboss.eap.channels</groupId>
+                                        <artifactId>eap-xp-5.0</artifactId>
+                                    </manifest>
+                                </channel>
+                            </channels>
+                            <feature-packs>
+                                <feature-pack>
+                                    <location>org.jboss.eap.xp:wildfly-galleon-pack</location>
+                                </feature-pack>
+                                <feature-pack>
+                                    <location>org.jboss.eap.cloud:eap-cloud-galleon-pack</location>
+                                </feature-pack>
+                            </feature-packs>
                             <layers>
-                                <layer>jaxrs-server</layer>
-                                <layer>microprofile-platform</layer>
+                                <layer>cloud-server</layer>
+                                <layer>microprofile-fault-tolerance</layer>
                             </layers>
-                            <plugin-options>
-                                <jboss-fork-embedded>true</jboss-fork-embedded>
-                            </plugin-options>
-                            <cloud/>
+                            <filename>ROOT.war</filename>
                         </configuration>
                         <executions>
                             <execution>
@@ -278,78 +325,21 @@
                             </execution>
                         </executions>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>integration-testing</id>
+            <build>
+                <plugins>
                     <plugin>
-                        <groupId>org.eclipse.jkube</groupId>
-                        <artifactId>openshift-maven-plugin</artifactId>
-                        <version>${version.jkube.maven.plugin}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>resource</goal>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <enricher>
-                                <config>
-                                    <jkube-service>
-                                        <type>NodePort</type>
-                                    </jkube-service>
-                                </config>
-                            </enricher>
+                            <includes>
+                                <include>**/CoffeeResourceIT</include>
+                            </includes>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- An optional Arquillian testing profile that executes tests in your JBoss EAP instance.
-                 This profile will start a new JBoss EAP instance, and execute the test, shutting it down when done.
-                 Run with: mvn clean verify -Parq-managed -->
-            <id>arq-managed</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${version.failsafe.plugin}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- An optional Arquillian testing profile that executes tests in a remote JBoss EAP instance.
-                 Run with: mvn clean verify -Parq-remote -->
-            <id>arq-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${version.failsafe.plugin}</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -363,6 +353,5 @@
             </build>
         </profile>
     </profiles>
-
 
 </project>

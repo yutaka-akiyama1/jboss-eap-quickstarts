@@ -17,8 +17,9 @@
 package org.wildfly.quickstarts.microprofile.faulttolerance;
 
 /**
+ * A simple entity class.
+ *
  * @author Radoslav Husar
- * A sample entity class.
  */
 public class Coffee {
 
