@@ -1340,6 +1340,7 @@ build:
   uri: {githubRepoCodeUrl}
   ref: {WildFlyQuickStartRepoTag}
   contextDir: {artifactId}
+  mode: s2i
 deploy:
   replicas: 1
   route:
